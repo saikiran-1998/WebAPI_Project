@@ -120,13 +120,14 @@ namespace WebAPI_Project.Controllers
         {
             try
             {
-                // if (id == product.Product_ID)
+                if (id == product.Product_ID)
                 {
                     //this.context.Entry(product).State = EntityState.Modified;
                     this.context.Update(product);
                     await context.SaveChangesAsync();
+                    return Ok(product);
                 }
-                // else
+                else
                 {
                     return BadRequest();
                 }
@@ -150,10 +151,9 @@ namespace WebAPI_Project.Controllers
             return Ok("product with id :" + product.Product_ID + " is Deleted");
 
         }
-
-
-
     }
+
+
     [ApiVersion("2.0")]
     [ApiController]
     [Route("v{v:apiVersion}/products")]
